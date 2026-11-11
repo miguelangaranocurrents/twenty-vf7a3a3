@@ -134,6 +134,15 @@ export const getEmptyRecordGqlOperationFilter = ({
       break;
     }
     case 'CURRENCY':
+      if (compositeFieldName === 'currencyCode') {
+        emptyRecordFilter = {
+          [correspondingField.name]: {
+            currencyCode: { is: 'NULL' } as SelectFilter,
+          } as CurrencyFilter,
+        };
+        break;
+      }
+
       emptyRecordFilter = {
         or: [
           {
